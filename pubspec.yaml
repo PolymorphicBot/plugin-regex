@@ -1,0 +1,8 @@
+name: regex
+version: 1.0.0
+description: Regular Expression Plugin for PolymorphicBot
+dependencies:
+  polymorphic_bot:
+    git: git://github.com/PolymorphicBot/PolymorphicBot.git
+  irc: ">=1.4.5 <1.5.0"
+  quiver: ">=0.18.2 <0.20.0"
