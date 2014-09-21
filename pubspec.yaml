@@ -1,5 +1,5 @@
 name: regex
-version: 1.0.0
+version: 1.0.1
 description: Regular Expression Plugin for PolymorphicBot
 dependencies:
   polymorphic_bot:
