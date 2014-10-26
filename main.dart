@@ -16,7 +16,7 @@ void main(_, port) {
     String message = data['message'];
     String user = data['from'];
 
-    void reply(String message, {bool prefix: true, String prefixContent: "Regular Expression"}) {
+    void reply(String message, {bool prefix: true, String prefixContent: "RegEx"}) {
       bot.message(network, target, (prefix ? "[${Color.BLUE}${prefixContent}${Color.RESET}] " : "") + message);
     }
 
