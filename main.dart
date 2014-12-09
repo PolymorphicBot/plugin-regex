@@ -1,5 +1,5 @@
 import "package:polymorphic_bot/api.dart";
-import "package:irc/irc.dart" show Color;
+import "package:irc/client.dart" show Color;
 import "package:quiver/pattern.dart";
 
 BotConnector bot;
