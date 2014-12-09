@@ -4,7 +4,7 @@ description: Regular Expression Plugin for PolymorphicBot
 dependencies:
   polymorphic_bot:
     git: git://github.com/PolymorphicBot/PolymorphicBot.git
-  irc: ">=1.4.5 <1.5.0"
+  irc: ">=2.0.0 <3.0.0"
   quiver: ">=0.18.2 <0.20.0"
 plugin:
   dependencies:
