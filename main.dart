@@ -52,7 +52,14 @@ void main(_, Plugin plugin) {
       }
       if (reverse) replacement = new String.fromCharCodes(replacement.codeUnits.reversed);
 
-      var regex = new RegExp(aExpr);
+      RegExp regex;
+      
+      try {
+        regex = new RegExp(aExpr);
+      } on FormatException catch (e) {
+        reply("ERROR: Invalid Regular Expression: ${e.message}");
+        return;
+      }
 
       bot.get("request", {
         "plugin": "buffer",
