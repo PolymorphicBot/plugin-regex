@@ -3,14 +3,11 @@ import "package:irc/client.dart" show Color;
 import "package:quiver/pattern.dart";
 
 BotConnector bot;
-EventManager eventManager;
 
-void main(_, port) {
-  bot = new BotConnector(port);
-  eventManager = bot.createEventManager();
+void main(_, Plugin plugin) {
+  bot = plugin.getBot();
 
-
-  eventManager.on("message").listen((data) {
+  bot.on("message").listen((data) {
     String network = data['network'];
     String target = data['target'];
     String message = data['message'];
