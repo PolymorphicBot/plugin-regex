@@ -60,33 +60,46 @@ void main(_, Plugin plugin) {
         reply("ERROR: Invalid Regular Expression: ${e.message}");
         return;
       }
-
-      plugin.get("request", {
-        "plugin": "buffer",
-        "command": "channel-buffer",
-        "data": {
-          "network": network,
-          "channel": target
-        }
-      }).then((response) {
-        List<Map<String, dynamic>> entries = response['entries'];
-
+      
+      plugin.callRemoteMethod("buffer", "getChannelBuffer", {
+        "network": network,
+        "channel": target
+      }).then((List<Map<String, dynamic>> entries) {
         for (Map<String, dynamic> entry in entries) {
           if (regex.hasMatch(entry['message'])) {
-            String dat_msg = entry['message'];
-            String new_msg = first ? dat_msg.replaceFirst(regex, replacement) : dat_msg.replaceAll(regex, replacement);
+            String datMsg = entry['message'];
+            String newMsg = first ? datMsg.replaceFirst(regex, replacement) : datMsg.replaceAll(regex, replacement);
 
-            reply(entry['from'] + ": " + new_msg);
+            reply(entry['from'] + ": " + newMsg);
 
-            plugin.get("request", {
-              "command": "addToBuffer",
-              "plugin": "buffer",
-              "data": {
-                "network": entry['network'],
-                "target": entry['target'],
-                "message": new_msg,
-                "from": entry['from']
-              }
+            plugin.callRemoteMethod("buffer", "addToBuffer", {
+              "network": entry['network'],
+              "target": entry['target'],
+              "message": newMsg,
+              "from": entry['from']
+            });
+            return;
+          }
+        }
+        reply("ERROR: No Match Found for expression '${expr}'");
+      });
+      
+      plugin.callRemoteMethod("buffer", "getChannelBuffer", {
+        "network": network,
+        "channel": target
+      }).then((entries) {
+        for (Map<String, dynamic> entry in entries) {
+          if (regex.hasMatch(entry['message'])) {
+            String datMsg = entry['message'];
+            String newMsg = first ? datMsg.replaceFirst(regex, replacement) : datMsg.replaceAll(regex, replacement);
+
+            reply(entry['from'] + ": " + newMsg);
+
+            plugin.callRemoteMethod("buffer", "addToBuffer", {
+              "network": entry['network'],
+              "target": entry['target'],
+              "message": newMsg,
+              "from": entry['from']
             });
             return;
           }
