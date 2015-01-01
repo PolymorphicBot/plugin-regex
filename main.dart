@@ -7,7 +7,7 @@ BotConnector bot;
 void main(_, Plugin plugin) {
   bot = plugin.getBot();
 
-  bot.on("message").listen((data) {
+  plugin.on("message").listen((data) {
     String network = data['network'];
     String target = data['target'];
     String message = data['message'];
@@ -61,7 +61,7 @@ void main(_, Plugin plugin) {
         return;
       }
 
-      bot.get("request", {
+      plugin.get("request", {
         "plugin": "buffer",
         "command": "channel-buffer",
         "data": {
@@ -78,7 +78,7 @@ void main(_, Plugin plugin) {
 
             reply(entry['from'] + ": " + new_msg);
 
-            bot.get("request", {
+            plugin.get("request", {
               "command": "add-to-buffer",
               "plugin": "buffer",
               "data": {
