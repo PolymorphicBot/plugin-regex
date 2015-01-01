@@ -79,7 +79,7 @@ void main(_, Plugin plugin) {
             reply(entry['from'] + ": " + new_msg);
 
             plugin.get("request", {
-              "command": "add-to-buffer",
+              "command": "addToBuffer",
               "plugin": "buffer",
               "data": {
                 "network": entry['network'],
