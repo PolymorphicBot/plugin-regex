@@ -14,7 +14,7 @@ void main(_, Plugin plugin) {
     String user = data['from'];
 
     void reply(String message, {bool prefix: true, String prefixContent: "RegEx"}) {
-      bot.message(network, target, (prefix ? "[${Color.BLUE}${prefixContent}${Color.RESET}] " : "") + message);
+      bot.sendMessage(network, target, (prefix ? "[${Color.BLUE}${prefixContent}${Color.RESET}] " : "") + message);
     }
 
     if (message.startsWith("s/") && message.length > 3) {
