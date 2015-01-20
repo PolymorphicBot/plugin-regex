@@ -2,9 +2,12 @@ import "package:polymorphic_bot/api.dart";
 import "package:irc/client.dart" show Color;
 import "package:quiver/pattern.dart";
 
+Plugin plugin;
 BotConnector bot;
 
-void main(_, Plugin plugin) {
+void main(args, port) {
+  plugin = polymorphic(args, port);
+  
   bot = plugin.getBot();
 
   plugin.on("message").listen((data) {
